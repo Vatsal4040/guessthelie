@@ -157,6 +157,68 @@
             background: linear-gradient(45deg, #ee5253, #ff6b6b);
         }
         
+        /* Difficulty Selection */
+        .difficulty-selection {
+            display: none;
+            text-align: center;
+            padding-top: 50px;
+            flex: 1;
+        }
+        
+        .difficulty-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: #feca57;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        
+        .difficulties {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .difficulty-btn {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+        
+        .difficulty-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+        
+        .difficulty-btn.easy {
+            background: linear-gradient(45deg, #1dd1a1, #10ac84);
+        }
+        
+        .difficulty-btn.medium {
+            background: linear-gradient(45deg, #feca57, #ff9f43);
+        }
+        
+        .difficulty-btn.hard {
+            background: linear-gradient(45deg, #ee5253, #ff6b6b);
+        }
+        
+        .difficulty-btn.advance {
+            background: linear-gradient(45deg, #5f27cd, #341f97);
+        }
+        
+        .difficulty-btn.extreme {
+            background: linear-gradient(45deg, #000000, #333333);
+        }
+        
         /* Category Selection */
         .category-selection {
             display: none;
@@ -203,14 +265,6 @@
         
         .category-icon {
             font-size: 2rem;
-        }
-        
-        /* Difficulty Selection */
-        .difficulty-selection {
-            display: none;
-            text-align: center;
-            padding-top: 50px;
-            flex: 1;
         }
         
         /* Game Screen */
@@ -377,7 +431,6 @@
         }
         
         .submit-btn {
-            display: none;
             background: #1dd1a1;
             color: #000;
             order: 3;
@@ -449,6 +502,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
+            flex-wrap: wrap;
         }
         
         .action-btn {
@@ -485,6 +539,15 @@
         
         .share-btn:hover {
             background: #ff9f43;
+        }
+        
+        .export-btn {
+            background: #10ac84;
+            color: white;
+        }
+        
+        .export-btn:hover {
+            background: #0e8d6b;
         }
         
         /* Animations */
@@ -549,6 +612,7 @@
 </head>
 <body>
     <div class="container">
+        <!-- Title Screen -->
         <div class="title-screen" id="titleScreen">
             <div class="play-text">Let's Play!</div>
             <h1 class="game-title">Guess the Lie Among Truth</h1>
@@ -562,10 +626,8 @@
             <button class="play-btn" id="playBtn">Start Game</button>
         </div>
         
+        <!-- Mode Selection -->
         <div class="mode-selection" id="modeSelection">
-            <div class="game-name" style="text-align: center; margin-top: 20px; cursor: pointer;" id="globalGameTitle">
-                Guess the Lie Among Truth
-            </div>
             <h2 class="mode-title">Choose Your Challenge</h2>
             <div class="mode-description">
                 Select your preferred game mode below. Each offers a unique way to test your lie-detecting skills!
@@ -577,25 +639,20 @@
             </div>
         </div>
         
+        <!-- Difficulty Selection -->
         <div class="difficulty-selection" id="difficultySelection">
-            <div class="game-name" style="text-align: center; margin-top: 20px; cursor: pointer;" id="globalGameTitle">
-                Guess the Lie Among Truth
-            </div>
-            <h2 class="mode-title">Choose Your Gauntlet Difficulty</h2>
-            <div class="mode-description">Pick your challenge level. The higher you go, the tougher the lies get!</div>
-            <div class="modes">
-                <button class="mode-btn classic" data-difficulty="rookie">🟢Rookie Mode<br><small>For beginners just testing the waters.</small></button>
-                <button class="mode-btn classic" data-difficulty="challenger">🔵Challenger Mode<br><small>A bit tougher — requires sharper thinking.</small></button>
-                <button class="mode-btn classic" data-difficulty="detective">🟡Detective Mode<br><small>Lies are sneakier — use your wits.</small></button>
-                <button class="mode-btn classic" data-difficulty="expert">🟠Expert Mode<br><small>Trick questions and deep knowledge needed.</small></button>
-                <button class="mode-btn classic" data-difficulty="mastermind">🔴Mastermind Mode<br><small>Only the sharpest minds survive.</small></button>
+            <h2 class="difficulty-title">Select Difficulty</h2>
+            <div class="difficulties">
+                <button class="difficulty-btn easy" data-difficulty="easy">Easy</button>
+                <button class="difficulty-btn medium" data-difficulty="medium">Medium</button>
+                <button class="difficulty-btn hard" data-difficulty="hard">Hard</button>
+                <button class="difficulty-btn advance" data-difficulty="advance">Advance</button>
+                <button class="difficulty-btn extreme" data-difficulty="extreme">Extreme</button>
             </div>
         </div>
-
+        
+        <!-- Category Selection -->
         <div class="category-selection" id="categorySelection">
-            <div class="game-name" style="text-align: center; margin-top: 20px; cursor: pointer;" id="globalGameTitle">
-                Guess the Lie Among Truth
-            </div>
             <h2 class="category-title">Choose a Category</h2>
             <div class="categories">
                 <button class="category-btn" data-category="space">
@@ -641,13 +698,13 @@
             </div>
         </div>
         
+        <!-- Game Screen -->
         <div class="game-screen" id="gameScreen">
             <div class="game-header">
                 <div>
                     <div class="game-name">Guess the Lie Among Truth</div>
                     <div class="category-name" id="categoryNameDisplay"></div>
                 </div>
-                <div class="category-name" id="difficultyDisplay" style="margin-right: 20px;"></div>
                 <div class="timer-display" id="timerDisplay">Time: 10s</div>
             </div>
             
@@ -669,9 +726,10 @@
                 </div>
                 
                 <div class="question-area">
-                    <div class="question-number">Question <span id="questionNumber">1</span>/10</div>
+                    <div class="question-number">Question <span id="questionNumber">1</span>/15</div>
                     <div class="statements" id="statementsContainer">
-                        </div>
+                        <!-- Statements will be inserted here by JavaScript -->
+                    </div>
                     
                     <div class="game-controls">
                         <button class="control-btn skip-btn" id="skipQuestionBtn">Skip</button>
@@ -683,6 +741,7 @@
             </div>
         </div>
         
+        <!-- Game Over Screen -->
         <div class="game-over-screen" id="gameOverScreen">
             <h2 class="game-over-title">Game Over!</h2>
             <div class="final-score">Your Score: <span id="finalScoreValue">0</span></div>
@@ -714,6 +773,7 @@
                 <button class="action-btn play-again-btn" id="playAgainBtn">Play Again</button>
                 <button class="action-btn main-menu-btn" id="mainMenuBtn">Main Menu</button>
                 <button class="action-btn share-btn" id="shareBtn">Share Score</button>
+                <button class="action-btn export-btn" id="exportBtn">Export CSV</button>
             </div>
         </div>
     </div>
@@ -722,174 +782,174 @@
         // Game Data with 15 questions per category
         const questions = {
             space: [
-                { statements: ["The sun is a star.", "Venus is the closest planet to the sun.", "Mars is known as the Red Planet."], answer: 1 },
-                { statements: ["The Milky Way is a galaxy.", "Pluto is classified as a planet.", "The moon has no atmosphere."], answer: 1 },
-                { statements: ["Saturn's rings are made of ice and rock.", "The Great Red Spot is on Mars.", "A light-year measures distance."], answer: 1 },
-                { statements: ["Neptune is the windiest planet.", "The sun is white in color.", "Black holes are invisible."], answer: 1 },
-                { statements: ["The International Space Station orbits Earth.", "The Big Bang created the universe.", "The moon is larger than Earth."], answer: 2 },
-                { statements: ["A solar eclipse occurs when the Moon blocks the Sun.", "Jupiter has the most moons in our solar system.", "The asteroid belt is located between Earth and Mars."], answer: 2 },
-                { statements: ["The Sun's core temperature is about 15 million degrees Celsius.", "Uranus rotates on its side.", "The Andromeda Galaxy is the closest galaxy to the Milky Way."], answer: 2 },
-                { statements: ["A comet's tail always points away from the Sun.", "Mercury has no atmosphere.", "The Hubble Telescope can see the flag on the Moon."], answer: 2 },
-                { statements: ["The Sun makes up 99.8% of the solar system's mass.", "Venus has more volcanoes than any other planet.", "The Moon is moving away from Earth at about 4 cm per year."], answer: 2 },
-                { statements: ["The solar system is about 4.6 billion years old.", "Saturn would float in water.", "The speed of light is 300,000 km per second."], answer: 2 },
-                { statements: ["The Sun will become a red giant in about 5 billion years.", "There are more stars in the universe than grains of sand on Earth.", "The Moon has active volcanoes."], answer: 2 },
-                { statements: ["The Earth's rotation is slowing down.", "Mars has two moons.", "The Oort Cloud is the boundary of our solar system."], answer: 2 },
-                { statements: ["The Sun's magnetic field causes sunspots.", "Jupiter's Great Red Spot is shrinking.", "The Kuiper Belt is home to many dwarf planets."], answer: 2 },
-                { statements: ["The first man-made object in space was Sputnik 1.", "The first woman in space was Valentina Tereshkova.", "The first space tourist was Dennis Tito."], answer: 2 },
-                { statements: ["The Voyager 1 spacecraft has left the solar system.", "The Parker Solar Probe is the fastest human-made object.", "The James Webb Telescope is Hubble's replacement."], answer: 2 }
+                { statements: ["The sun is a star.", "Venus is the closest planet to the sun.", "Mars is known as the Red Planet."], answer: 1, difficulty: "easy" },
+                { statements: ["The Milky Way is a galaxy.", "Pluto is classified as a planet.", "The moon has no atmosphere."], answer: 1, difficulty: "easy" },
+                { statements: ["Saturn's rings are made of ice and rock.", "The Great Red Spot is on Mars.", "A light-year measures distance."], answer: 1, difficulty: "easy" },
+                { statements: ["Neptune is the windiest planet.", "The sun is white in color.", "Black holes are invisible."], answer: 1, difficulty: "medium" },
+                { statements: ["The International Space Station orbits Earth.", "The Big Bang created the universe.", "The moon is larger than Earth."], answer: 2, difficulty: "medium" },
+                { statements: ["A solar eclipse occurs when the Moon blocks the Sun.", "Jupiter has the most moons in our solar system.", "The asteroid belt is located between Earth and Mars."], answer: 2, difficulty: "medium" },
+                { statements: ["The Sun's core temperature is about 15 million degrees Celsius.", "Uranus rotates on its side.", "The Andromeda Galaxy is the closest galaxy to the Milky Way."], answer: 2, difficulty: "hard" },
+                { statements: ["A comet's tail always points away from the Sun.", "Mercury has no atmosphere.", "The Hubble Telescope can see the flag on the Moon."], answer: 2, difficulty: "hard" },
+                { statements: ["The Sun makes up 99.8% of the solar system's mass.", "Venus has more volcanoes than any other planet.", "The Moon is moving away from Earth at about 4 cm per year."], answer: 2, difficulty: "advance" },
+                { statements: ["The solar system is about 4.6 billion years old.", "Saturn would float in water.", "The speed of light is 300,000 km per second."], answer: 2, difficulty: "advance" },
+                { statements: ["The Sun will become a red giant in about 5 billion years.", "There are more stars in the universe than grains of sand on Earth.", "The Moon has active volcanoes."], answer: 2, difficulty: "extreme" },
+                { statements: ["The Earth's rotation is slowing down.", "Mars has two moons.", "The Oort Cloud is the boundary of our solar system."], answer: 2, difficulty: "extreme" },
+                { statements: ["The Sun's magnetic field causes sunspots.", "Jupiter's Great Red Spot is shrinking.", "The Kuiper Belt is home to many dwarf planets."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first man-made object in space was Sputnik 1.", "The first woman in space was Valentina Tereshkova.", "The first space tourist was Dennis Tito."], answer: 2, difficulty: "extreme" },
+                { statements: ["The Voyager 1 spacecraft has left the solar system.", "The Parker Solar Probe is the fastest human-made object.", "The James Webb Telescope is Hubble's replacement."], answer: 2, difficulty: "extreme" }
             ],
             humanBody: [
-                { statements: ["The human body has 206 bones.", "The heart is a muscle.", "The brain is the largest organ."], answer: 2 },
-                { statements: ["Blood is red due to iron.", "The small intestine is longer than the large intestine.", "Humans have four lungs."], answer: 2 },
-                { statements: ["The skin is the largest organ.", "The human eye can distinguish 10 million colors.", "Fingerprints are unique."], answer: 0 },
-                { statements: ["The heart beats about 100,000 times a day.", "The liver can regenerate.", "Humans have 24 ribs."], answer: 2 },
-                { statements: ["The brain uses 20% of the body's energy.", "Bones are stronger than steel.", "The appendix has no function."], answer: 2 },
-                { statements: ["The adult human body has about 5 liters of blood.", "The femur is the longest bone.", "Teeth are considered bones."], answer: 2 },
-                { statements: ["The human nose can detect about 1 trillion smells.", "The left lung is smaller than the right lung.", "The human body has about 60,000 miles of blood vessels."], answer: 2 },
-                { statements: ["The human body produces about 25 million new cells each second.", "The cornea is the only part of the body with no blood supply.", "The tongue is the strongest muscle in the body."], answer: 2 },
-                { statements: ["The human brain is about 75% water.", "The average person has about 100,000 hairs on their head.", "Fingernails grow faster than toenails."], answer: 2 },
-                { statements: ["The human body has about 600 muscles.", "The stomach's acid is strong enough to dissolve metal.", "The human eye can see about 10 million different colors."], answer: 2 },
-                { statements: ["The human skeleton is completely replaced every 10 years.", "The human heart creates enough pressure to squirt blood 30 feet.", "The human brain can store about 2.5 petabytes of information."], answer: 2 },
-                { statements: ["The human body has more bacterial cells than human cells.", "The average person produces about 25,000 quarts of saliva in a lifetime.", "The human liver performs over 500 functions."], answer: 2 },
-                { statements: ["The human body is about 60% water.", "The human heart beats about 100,000 times a day.", "The human brain weighs about 3 pounds."], answer: 2 },
-                { statements: ["The human body has about 37 trillion cells.", "The human eye blinks about 15-20 times per minute.", "The human body has about 206 bones at birth."], answer: 2 },
-                { statements: ["The human brain uses about 20% of the body's oxygen.", "The human body has about 5 million hair follicles.", "The human heart pumps about 2,000 gallons of blood daily."], answer: 2 }
+                { statements: ["The human body has 206 bones.", "The heart is a muscle.", "The brain is the largest organ."], answer: 2, difficulty: "easy" },
+                { statements: ["Blood is red due to iron.", "The small intestine is longer than the large intestine.", "Humans have four lungs."], answer: 2, difficulty: "easy" },
+                { statements: ["The skin is the largest organ.", "The human eye can distinguish 10 million colors.", "Fingerprints are unique."], answer: 0, difficulty: "easy" },
+                { statements: ["The heart beats about 100,000 times a day.", "The liver can regenerate.", "Humans have 24 ribs."], answer: 2, difficulty: "medium" },
+                { statements: ["The brain uses 20% of the body's energy.", "Bones are stronger than steel.", "The appendix has no function."], answer: 2, difficulty: "medium" },
+                { statements: ["The adult human body has about 5 liters of blood.", "The femur is the longest bone.", "Teeth are considered bones."], answer: 2, difficulty: "medium" },
+                { statements: ["The human nose can detect about 1 trillion smells.", "The left lung is smaller than the right lung.", "The human body has about 60,000 miles of blood vessels."], answer: 2, difficulty: "hard" },
+                { statements: ["The human body produces about 25 million new cells each second.", "The cornea is the only part of the body with no blood supply.", "The tongue is the strongest muscle in the body."], answer: 2, difficulty: "hard" },
+                { statements: ["The human brain is about 75% water.", "The average person has about 100,000 hairs on their head.", "Fingernails grow faster than toenails."], answer: 2, difficulty: "advance" },
+                { statements: ["The human body has about 600 muscles.", "The stomach's acid is strong enough to dissolve metal.", "The human eye can see about 10 million different colors."], answer: 2, difficulty: "advance" },
+                { statements: ["The human skeleton is completely replaced every 10 years.", "The human heart creates enough pressure to squirt blood 30 feet.", "The human brain can store about 2.5 petabytes of information."], answer: 2, difficulty: "extreme" },
+                { statements: ["The human body has more bacterial cells than human cells.", "The average person produces about 25,000 quarts of saliva in a lifetime.", "The human liver performs over 500 functions."], answer: 2, difficulty: "extreme" },
+                { statements: ["The human body is about 60% water.", "The human heart beats about 100,000 times a day.", "The human brain weighs about 3 pounds."], answer: 2, difficulty: "extreme" },
+                { statements: ["The human body has about 37 trillion cells.", "The human eye blinks about 15-20 times per minute.", "The human body has about 206 bones at birth."], answer: 2, difficulty: "extreme" },
+                { statements: ["The human brain uses about 20% of the body's oxygen.", "The human body has about 5 million hair follicles.", "The human heart pumps about 2,000 gallons of blood daily."], answer: 2, difficulty: "extreme" }
             ],
             animals: [
-                { statements: ["An elephant is a mammal.", "The cheetah is the fastest land animal.", "Penguins can fly."], answer: 2 },
-                { statements: ["Bats are the only flying mammals.", "A group of lions is called a pride.", "Sharks are mammals."], answer: 2 },
-                { statements: ["Dolphins sleep with one eye open.", "A snail can sleep for three years.", "Goldfish have a 3-second memory."], answer: 2 },
-                { statements: ["A group of crows is called a murder.", "Octopuses have three hearts.", "Kangaroos can't walk backwards."], answer: 0 },
-                { statements: ["Polar bears have black skin.", "A blue whale's heart is the size of a car.", "Frogs drink through their skin."], answer: 2 },
-                { statements: ["A group of owls is called a parliament.", "A shrimp's heart is in its head.", "Sloths take two weeks to digest food."], answer: 2 },
-                { statements: ["A cat has 32 muscles in each ear.", "A cockroach can live for weeks without its head.", "Butterflies taste with their feet."], answer: 2 },
-                { statements: ["A group of rhinos is called a crash.", "A cow gives nearly 200,000 glasses of milk in her lifetime.", "Starfish have no brain."], answer: 2 },
-                { statements: ["A group of flamingos is called a flamboyance.", "A hummingbird weighs less than a penny.", "A jellyfish is 95% water."], answer: 2 },
-                { statements: ["A group of frogs is called an army.", "A chameleon's tongue is twice as long as its body.", "A crocodile cannot stick out its tongue."], answer: 2 },
-                { statements: ["A group of giraffes is called a tower.", "A hippo's sweat is pink.", "A koala's fingerprints are indistinguishable from humans."], answer: 2 },
-                { statements: ["A group of parrots is called a pandemonium.", "A pig's orgasm lasts 30 minutes.", "A rabbit's teeth never stop growing."], answer: 2 },
-                { statements: ["A group of zebras is called a zeal.", "A shark can detect one part of blood in 100 million parts of water.", "A snail can have up to 25,000 teeth."], answer: 2 },
-                { statements: ["A group of kangaroos is called a mob.", "A tarantula can survive for more than two years without food.", "A woodpecker can peck 20 times per second."], answer: 2 },
-                { statements: ["A group of foxes is called a skulk.", "An octopus has nine brains.", "An ostrich's eye is bigger than its brain."], answer: 2 }
+                { statements: ["An elephant is a mammal.", "The cheetah is the fastest land animal.", "Penguins can fly."], answer: 2, difficulty: "easy" },
+                { statements: ["Bats are the only flying mammals.", "A group of lions is called a pride.", "Sharks are mammals."], answer: 2, difficulty: "easy" },
+                { statements: ["Dolphins sleep with one eye open.", "A snail can sleep for three years.", "Goldfish have a 3-second memory."], answer: 2, difficulty: "easy" },
+                { statements: ["A group of crows is called a murder.", "Octopuses have three hearts.", "Kangaroos can't walk backwards."], answer: 0, difficulty: "medium" },
+                { statements: ["Polar bears have black skin.", "A blue whale's heart is the size of a car.", "Frogs drink through their skin."], answer: 2, difficulty: "medium" },
+                { statements: ["A group of owls is called a parliament.", "A shrimp's heart is in its head.", "Sloths take two weeks to digest food."], answer: 2, difficulty: "medium" },
+                { statements: ["A cat has 32 muscles in each ear.", "A cockroach can live for weeks without its head.", "Butterflies taste with their feet."], answer: 2, difficulty: "hard" },
+                { statements: ["A group of rhinos is called a crash.", "A cow gives nearly 200,000 glasses of milk in her lifetime.", "Starfish have no brain."], answer: 2, difficulty: "hard" },
+                { statements: ["A group of flamingos is called a flamboyance.", "A hummingbird weighs less than a penny.", "A jellyfish is 95% water."], answer: 2, difficulty: "advance" },
+                { statements: ["A group of frogs is called an army.", "A chameleon's tongue is twice as long as its body.", "A crocodile cannot stick out its tongue."], answer: 2, difficulty: "advance" },
+                { statements: ["A group of giraffes is called a tower.", "A hippo's sweat is pink.", "A koala's fingerprints are indistinguishable from humans."], answer: 2, difficulty: "extreme" },
+                { statements: ["A group of parrots is called a pandemonium.", "A pig's orgasm lasts 30 minutes.", "A rabbit's teeth never stop growing."], answer: 2, difficulty: "extreme" },
+                { statements: ["A group of zebras is called a zeal.", "A shark can detect one part of blood in 100 million parts of water.", "A snail can have up to 25,000 teeth."], answer: 2, difficulty: "extreme" },
+                { statements: ["A group of kangaroos is called a mob.", "A tarantula can survive for more than two years without food.", "A woodpecker can peck 20 times per second."], answer: 2, difficulty: "extreme" },
+                { statements: ["A group of foxes is called a skulk.", "An octopus has nine brains.", "An ostrich's eye is bigger than its brain."], answer: 2, difficulty: "extreme" }
             ],
             history: [
-                { statements: ["The Great Wall of China is visible from space.", "The Titanic sank in 1912.", "The Statue of Liberty was a gift from France."], answer: 0 },
-                { statements: ["World War II ended in 1945.", "The first man on the moon was Neil Armstrong.", "The pyramids were built by slaves."], answer: 2 },
-                { statements: ["The Roman Empire fell in 476 AD.", "The Declaration of Independence was signed in 1776.", "Cleopatra lived closer to the moon landing than to the pyramids."], answer: 0 },
-                { statements: ["The first iPhone was released in 2007.", "The Berlin Wall fell in 1989.", "The first email was sent in 1971."], answer: 0 },
-                { statements: ["The first Olympic Games were in Greece.", "The Industrial Revolution began in England.", "The first computer was invented in the 20th century."], answer: 2 },
-                { statements: ["The Eiffel Tower was originally intended for Barcelona.", "The shortest war in history lasted 38 minutes.", "The first photograph was taken in 1826."], answer: 2 },
-                { statements: ["The Great Pyramid was the tallest man-made structure for over 3,800 years.", "The first successful airplane flight was in 1903.", "The first newspaper was published in 1605."], answer: 2 },
-                { statements: ["The first successful vaccine was for smallpox.", "The first telephone call was made in 1876.", "The first television was invented in 1927."], answer: 2 },
-                { statements: ["The first successful heart transplant was in 1967.", "The first man in space was Yuri Gagarin.", "The first atomic bomb was dropped in 1945."], answer: 2 },
-                { statements: ["The first successful moon landing was in 1969.", "The first successful cloning of a mammal was in 1996.", "The first successful human genome sequencing was in 2003."], answer: 2 },
-                { statements: ["The first successful transatlantic telegraph cable was laid in 1858.", "The first successful transatlantic flight was in 1919.", "The first successful transatlantic telephone call was in 1927."], answer: 2 },
-                { statements: ["The first successful submarine was built in 1620.", "The first successful steam engine was built in 1712.", "The first successful electric light bulb was invented in 1879."], answer: 2 },
-                { statements: ["The first successful human blood transfusion was in 1818.", "The first successful anesthesia was used in 1846.", "The first successful antibiotic was discovered in 1928."], answer: 2 },
-                { statements: ["The first successful human heart surgery was in 1893.", "The first successful human organ transplant was in 1954.", "The first successful human face transplant was in 2005."], answer: 2 },
-                { statements: ["The first successful human spacewalk was in 1965.", "The first successful human landing on Mars was in 1976.", "The first successful human landing on the Moon was in 1969."], answer: 2 }
+                { statements: ["The Great Wall of China is visible from space.", "The Titanic sank in 1912.", "The Statue of Liberty was a gift from France."], answer: 0, difficulty: "easy" },
+                { statements: ["World War II ended in 1945.", "The first man on the moon was Neil Armstrong.", "The pyramids were built by slaves."], answer: 2, difficulty: "easy" },
+                { statements: ["The Roman Empire fell in 476 AD.", "The Declaration of Independence was signed in 1776.", "Cleopatra lived closer to the moon landing than to the pyramids."], answer: 0, difficulty: "medium" },
+                { statements: ["The first iPhone was released in 2007.", "The Berlin Wall fell in 1989.", "The first email was sent in 1971."], answer: 0, difficulty: "medium" },
+                { statements: ["The first Olympic Games were in Greece.", "The Industrial Revolution began in England.", "The first computer was invented in the 20th century."], answer: 2, difficulty: "medium" },
+                { statements: ["The Eiffel Tower was originally intended for Barcelona.", "The shortest war in history lasted 38 minutes.", "The first photograph was taken in 1826."], answer: 2, difficulty: "hard" },
+                { statements: ["The Great Pyramid was the tallest man-made structure for over 3,800 years.", "The first successful airplane flight was in 1903.", "The first newspaper was published in 1605."], answer: 2, difficulty: "hard" },
+                { statements: ["The first successful vaccine was for smallpox.", "The first telephone call was made in 1876.", "The first television was invented in 1927."], answer: 2, difficulty: "advance" },
+                { statements: ["The first successful heart transplant was in 1967.", "The first man in space was Yuri Gagarin.", "The first atomic bomb was dropped in 1945."], answer: 2, difficulty: "advance" },
+                { statements: ["The first successful moon landing was in 1969.", "The first successful cloning of a mammal was in 1996.", "The first successful human genome sequencing was in 2003."], answer: 2, difficulty: "advance" },
+                { statements: ["The first successful transatlantic telegraph cable was laid in 1858.", "The first successful transatlantic flight was in 1919.", "The first successful transatlantic telephone call was in 1927."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first successful submarine was built in 1620.", "The first successful steam engine was built in 1712.", "The first successful electric light bulb was invented in 1879."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first successful human blood transfusion was in 1818.", "The first successful anesthesia was used in 1846.", "The first successful antibiotic was discovered in 1928."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first successful human heart surgery was in 1893.", "The first successful human organ transplant was in 1954.", "The first successful human face transplant was in 2005."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first successful human spacewalk was in 1965.", "The first successful human landing on Mars was in 1976.", "The first successful human landing on the Moon was in 1969."], answer: 2, difficulty: "extreme" }
             ],
             food: [
-                { statements: ["Carrots improve night vision.", "Chocolate comes from a bean.", "MSG causes headaches."], answer: 2 },
-                { statements: ["Honey never spoils.", "Bananas are berries.", "Coffee dehydrates you."], answer: 2 },
-                { statements: ["The hottest part of a chili is the seeds.", "Sushi means 'raw fish'.", "Pineapples grow on trees."], answer: 1 },
-                { statements: ["Tomatoes are fruits.", "Microwaving food removes nutrients.", "The color of a chili indicates its spiciness."], answer: 1 },
-                { statements: ["Peanuts are nuts.", "Eating turkey makes you sleepy.", "The sticker on fruit is edible."], answer: 0 },
-                { statements: ["The world's most expensive coffee comes from elephant dung.", "The world's most expensive spice is saffron.", "The world's most expensive mushroom is the white truffle."], answer: 2 },
-                { statements: ["The world's most expensive pizza costs $12,000.", "The world's most expensive burger costs $5,000.", "The world's most expensive sandwich costs $1,000."], answer: 2 },
-                { statements: ["The world's most expensive ice cream costs $1,000 per scoop.", "The world's most expensive dessert costs $25,000.", "The world's most expensive cocktail costs $10,000."], answer: 2 },
-                { statements: ["The world's most expensive potato chip costs $50.", "The world's most expensive chocolate bar costs $260.", "The world's most expensive cupcake costs $1,000."], answer: 2 },
-                { statements: ["The world's most expensive omelet costs $1,000.", "The world's most expensive hot dog costs $169.", "The world's most expensive bagel costs $1,000."], answer: 2 },
-                { statements: ["The world's most expensive steak costs $3,200.", "The world's most expensive sushi costs $1,978.", "The world's most expensive caviar costs $34,500 per kg."], answer: 2 },
-                { statements: ["The world's most expensive tea costs $1.2 million per kg.", "The world's most expensive coffee costs $600 per pound.", "The world's most expensive salt costs $398 per pound."], answer: 2 },
-                { statements: ["The world's most expensive melon costs $45,000.", "The world's most expensive mango costs $1,500.", "The world's most expensive watermelon costs $6,100."], answer: 2 },
-                { statements: ["The world's most expensive apple costs $21.", "The world's most expensive orange costs $10.", "The world's most expensive grape costs $1.20."], answer: 2 },
-                { statements: ["The world's most expensive egg costs $1,000.", "The world's most expensive cheese costs $1,000 per pound.", "The world's most expensive butter costs $1,000 per pound."], answer: 2 }
+                { statements: ["Carrots improve night vision.", "Chocolate comes from a bean.", "MSG causes headaches."], answer: 2, difficulty: "easy" },
+                { statements: ["Honey never spoils.", "Bananas are berries.", "Coffee dehydrates you."], answer: 2, difficulty: "easy" },
+                { statements: ["The hottest part of a chili is the seeds.", "Sushi means 'raw fish'.", "Pineapples grow on trees."], answer: 1, difficulty: "medium" },
+                { statements: ["Tomatoes are fruits.", "Microwaving food removes nutrients.", "The color of a chili indicates its spiciness."], answer: 1, difficulty: "medium" },
+                { statements: ["Peanuts are nuts.", "Eating turkey makes you sleepy.", "The sticker on fruit is edible."], answer: 0, difficulty: "medium" },
+                { statements: ["The world's most expensive coffee comes from elephant dung.", "The world's most expensive spice is saffron.", "The world's most expensive mushroom is the white truffle."], answer: 2, difficulty: "hard" },
+                { statements: ["The world's most expensive pizza costs $12,000.", "The world's most expensive burger costs $5,000.", "The world's most expensive sandwich costs $1,000."], answer: 2, difficulty: "hard" },
+                { statements: ["The world's most expensive ice cream costs $1,000 per scoop.", "The world's most expensive dessert costs $25,000.", "The world's most expensive cocktail costs $10,000."], answer: 2, difficulty: "advance" },
+                { statements: ["The world's most expensive potato chip costs $50.", "The world's most expensive chocolate bar costs $260.", "The world's most expensive cupcake costs $1,000."], answer: 2, difficulty: "advance" },
+                { statements: ["The world's most expensive omelet costs $1,000.", "The world's most expensive hot dog costs $169.", "The world's most expensive bagel costs $1,000."], answer: 2, difficulty: "advance" },
+                { statements: ["The world's most expensive steak costs $3,200.", "The world's most expensive sushi costs $1,978.", "The world's most expensive caviar costs $34,500 per kg."], answer: 2, difficulty: "extreme" },
+                { statements: ["The world's most expensive tea costs $1.2 million per kg.", "The world's most expensive coffee costs $600 per pound.", "The world's most expensive salt costs $398 per pound."], answer: 2, difficulty: "extreme" },
+                { statements: ["The world's most expensive melon costs $45,000.", "The world's most expensive mango costs $1,500.", "The world's most expensive watermelon costs $6,100."], answer: 2, difficulty: "extreme" },
+                { statements: ["The world's most expensive apple costs $21.", "The world's most expensive orange costs $10.", "The world's most expensive grape costs $1.20."], answer: 2, difficulty: "extreme" },
+                { statements: ["The world's most expensive egg costs $1,000.", "The world's most expensive cheese costs $1,000 per pound.", "The world's most expensive butter costs $1,000 per pound."], answer: 2, difficulty: "extreme" }
             ],
             technology: [
-                { statements: ["The first computer virus was created in 1982.", "The QWERTY keyboard was designed to slow typists.", "The first website is still online."], answer: 0 },
-                { statements: ["Google was originally called 'Backrub'.", "The first iPhone had a front-facing camera.", "Wi-Fi stands for 'Wireless Fidelity'."], answer: 1 },
-                { statements: ["The first video uploaded to YouTube was of a zoo.", "The 'www' in URLs stands for 'world wide web'.", "The first computer mouse was made of wood."], answer: 0 },
-                { statements: ["The first text message said 'Merry Christmas'.", "The first camera phone was released in 2000.", "Bluetooth is named after a Viking king."], answer: 1 },
-                { statements: ["The first computer bug was a moth.", "The 'Like' button was almost called 'Awesome'.", "The first domain name was symbolics.com."], answer: 1 },
-                { statements: ["The first computer weighed more than 27 tons.", "The first hard drive could store 5MB of data.", "The first RAM could store 256 bytes."], answer: 2 },
-                { statements: ["The first computer game was created in 1958.", "The first computer mouse was invented in 1964.", "The first computer keyboard was invented in 1968."], answer: 2 },
-                { statements: ["The first computer monitor was invented in 1973.", "The first computer printer was invented in 1953.", "The first computer scanner was invented in 1957."], answer: 2 },
-                { statements: ["The first computer network was created in 1969.", "The first computer virus was created in 1971.", "The first computer worm was created in 1988."], answer: 2 },
-                { statements: ["The first computer spreadsheet was created in 1979.", "The first computer word processor was created in 1964.", "The first computer database was created in 1960."], answer: 2 },
-                { statements: ["The first computer animation was created in 1960.", "The first computer graphics were created in 1950.", "The first computer music was created in 1957."], answer: 2 },
-                { statements: ["The first computer art was created in 1965.", "The first computer movie was created in 1972.", "The first computer game console was created in 1972."], answer: 2 },
-                { statements: ["The first computer laptop was created in 1981.", "The first computer tablet was created in 1968.", "The first computer smartphone was created in 1994."], answer: 2 },
-                { statements: ["The first computer AI was created in 1956.", "The first computer chatbot was created in 1966.", "The first computer speech recognition was created in 1952."], answer: 2 },
-                { statements: ["The first computer vision system was created in 1966.", "The first computer robot was created in 1954.", "The first computer self-driving car was created in 1986."], answer: 2 }
+                { statements: ["The first computer virus was created in 1982.", "The QWERTY keyboard was designed to slow typists.", "The first website is still online."], answer: 0, difficulty: "easy" },
+                { statements: ["Google was originally called 'Backrub'.", "The first iPhone had a front-facing camera.", "Wi-Fi stands for 'Wireless Fidelity'."], answer: 1, difficulty: "easy" },
+                { statements: ["The first video uploaded to YouTube was of a zoo.", "The 'www' in URLs stands for 'world wide web'.", "The first computer mouse was made of wood."], answer: 0, difficulty: "medium" },
+                { statements: ["The first text message said 'Merry Christmas'.", "The first camera phone was released in 2000.", "Bluetooth is named after a Viking king."], answer: 1, difficulty: "medium" },
+                { statements: ["The first computer bug was a moth.", "The 'Like' button was almost called 'Awesome'.", "The first domain name was symbolics.com."], answer: 1, difficulty: "medium" },
+                { statements: ["The first computer weighed more than 27 tons.", "The first hard drive could store 5MB of data.", "The first RAM could store 256 bytes."], answer: 2, difficulty: "hard" },
+                { statements: ["The first computer game was created in 1958.", "The first computer mouse was invented in 1964.", "The first computer keyboard was invented in 1968."], answer: 2, difficulty: "hard" },
+                { statements: ["The first computer monitor was invented in 1973.", "The first computer printer was invented in 1953.", "The first computer scanner was invented in 1957."], answer: 2, difficulty: "advance" },
+                { statements: ["The first computer network was created in 1969.", "The first computer virus was created in 1971.", "The first computer worm was created in 1988."], answer: 2, difficulty: "advance" },
+                { statements: ["The first computer spreadsheet was created in 1979.", "The first computer word processor was created in 1964.", "The first computer database was created in 1960."], answer: 2, difficulty: "advance" },
+                { statements: ["The first computer animation was created in 1960.", "The first computer graphics were created in 1950.", "The first computer music was created in 1957."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first computer art was created in 1965.", "The first computer movie was created in 1972.", "The first computer game console was created in 1972."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first computer laptop was created in 1981.", "The first computer tablet was created in 1968.", "The first computer smartphone was created in 1994."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first computer AI was created in 1956.", "The first computer chatbot was created in 1966.", "The first computer speech recognition was created in 1952."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first computer vision system was created in 1966.", "The first computer robot was created in 1954.", "The first computer self-driving car was created in 1986."], answer: 2, difficulty: "extreme" }
             ],
             popCulture: [
-                { statements: ["The first movie with sound was 'The Jazz Singer'.", "The Beatles originally called themselves 'The Quarrymen'.", "Elvis Presley never performed outside the US."], answer: 2 },
-                { statements: ["The first video played on MTV was 'Video Killed the Radio Star'.", "Mickey Mouse's original name was Mortimer.", "The Simpsons is the longest-running animated series."], answer: 1 },
-                { statements: ["Harry Potter was almost named 'Harry Putter'.", "The first Star Wars movie was released in 1977.", "The highest-grossing movie of all time is Avatar."], answer: 0 },
-                { statements: ["The Friends theme song is 'I'll Be There for You'.", "The first Super Bowl halftime show was in 1967.", "The most followed person on Instagram is Cristiano Ronaldo."], answer: 1 },
-                { statements: ["The first YouTube video was uploaded in 2005.", "The most streamed song on Spotify is 'Shape of You'.", "The highest-grossing music tour was by Ed Sheeran."], answer: 2 },
-                { statements: ["The first emoji was created in 1999.", "The first tweet was sent in 2006.", "The first Facebook post was made in 2004."], answer: 2 },
-                { statements: ["The first Instagram post was shared in 2010.", "The first TikTok video was uploaded in 2016.", "The first Snapchat was sent in 2011."], answer: 2 },
-                { statements: ["The first viral internet meme was 'Dancing Baby' in 1996.", "The first viral YouTube video was 'Charlie Bit My Finger' in 2007.", "The first viral TikTok was 'Renegade' in 2019."], answer: 2 },
-                { statements: ["The first viral challenge was the Ice Bucket Challenge in 2014.", "The first viral dance was the Macarena in 1996.", "The first viral song was 'Gangnam Style' in 2012."], answer: 2 },
-                { statements: ["The first viral prank was the 'Balloon Boy' hoax in 2009.", "The first viral fail was 'David After Dentist' in 2009.", "The first viral cat video was 'Keyboard Cat' in 2007."], answer: 2 },
-                { statements: ["The first viral unboxing video was in 2006.", "The first viral ASMR video was in 2009.", "The first viral mukbang video was in 2010."], answer: 2 },
-                { statements: ["The first viral reaction video was in 2007.", "The first viral parody video was in 2006.", "The first viral lip sync video was in 2007."], answer: 2 },
-                { statements: ["The first viral cooking video was in 2008.", "The first viral DIY video was in 2007.", "The first viral life hack video was in 2008."], answer: 2 },
-                { statements: ["The first viral fitness video was in 2009.", "The first viral beauty tutorial was in 2007.", "The first viral gaming video was in 2006."], answer: 2 },
-                { statements: ["The first viral travel video was in 2008.", "The first viral pet video was in 2007.", "The first viral baby video was in 2006."], answer: 2 }
+                { statements: ["The first movie with sound was 'The Jazz Singer'.", "The Beatles originally called themselves 'The Quarrymen'.", "Elvis Presley never performed outside the US."], answer: 2, difficulty: "easy" },
+                { statements: ["The first video played on MTV was 'Video Killed the Radio Star'.", "Mickey Mouse's original name was Mortimer.", "The Simpsons is the longest-running animated series."], answer: 1, difficulty: "easy" },
+                { statements: ["Harry Potter was almost named 'Harry Putter'.", "The first Star Wars movie was released in 1977.", "The highest-grossing movie of all time is Avatar."], answer: 0, difficulty: "medium" },
+                { statements: ["The Friends theme song is 'I'll Be There for You'.", "The first Super Bowl halftime show was in 1967.", "The most followed person on Instagram is Cristiano Ronaldo."], answer: 1, difficulty: "medium" },
+                { statements: ["The first YouTube video was uploaded in 2005.", "The most streamed song on Spotify is 'Shape of You'.", "The highest-grossing music tour was by Ed Sheeran."], answer: 2, difficulty: "hard" },
+                { statements: ["The first emoji was created in 1999.", "The first tweet was sent in 2006.", "The first Facebook post was made in 2004."], answer: 2, difficulty: "hard" },
+                { statements: ["The first Instagram post was shared in 2010.", "The first TikTok video was uploaded in 2016.", "The first Snapchat was sent in 2011."], answer: 2, difficulty: "advance" },
+                { statements: ["The first viral internet meme was 'Dancing Baby' in 1996.", "The first viral YouTube video was 'Charlie Bit My Finger' in 2007.", "The first viral TikTok was 'Renegade' in 2019."], answer: 2, difficulty: "advance" },
+                { statements: ["The first viral challenge was the Ice Bucket Challenge in 2014.", "The first viral dance was the Macarena in 1996.", "The first viral song was 'Gangnam Style' in 2012."], answer: 2, difficulty: "advance" },
+                { statements: ["The first viral prank was the 'Balloon Boy' hoax in 2009.", "The first viral fail was 'David After Dentist' in 2009.", "The first viral cat video was 'Keyboard Cat' in 2007."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first viral unboxing video was in 2006.", "The first viral ASMR video was in 2009.", "The first viral mukbang video was in 2010."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first viral reaction video was in 2007.", "The first viral parody video was in 2006.", "The first viral lip sync video was in 2007."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first viral cooking video was in 2008.", "The first viral DIY video was in 2007.", "The first viral life hack video was in 2008."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first viral fitness video was in 2009.", "The first viral beauty tutorial was in 2007.", "The first viral gaming video was in 2006."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first viral travel video was in 2008.", "The first viral pet video was in 2007.", "The first viral baby video was in 2006."], answer: 2, difficulty: "extreme" }
             ],
             literature: [
-                { statements: ["J.K. Rowling wrote Harry Potter on napkins.", "The first novel ever written was 'The Tale of Genji'.", "Shakespeare invented the name 'Jessica'."], answer: 0 },
-                { statements: ["'Moby Dick' was a commercial failure.", "The longest novel is 'In Search of Lost Time'.", "Dr. Seuss wrote 'Green Eggs and Ham' on a bet."], answer: 0 },
-                { statements: ["The first dictionary was published in 1604.", "The Bible is the most stolen book.", "The first printed book was the Gutenberg Bible."], answer: 1 },
-                { statements: ["'Alice in Wonderland' was based on a real girl.", "Charles Dickens wrote 'A Christmas Carol' in six weeks.", "The first Pulitzer Prize was awarded in 1917."], answer: 0 },
-                { statements: ["'War and Peace' has over 500 characters.", "The most translated book is the Bible.", "The first novel written on a typewriter was 'Tom Sawyer'."], answer: 2 },
-                { statements: ["The first book printed in America was 'The Bay Psalm Book'.", "The first book sold on Amazon was 'Fluid Concepts and Creative Analogies'.", "The first e-book was 'The Declaration of Independence'."], answer: 2 },
-                { statements: ["The first audiobook was recorded in 1932.", "The first book club was started in 1926.", "The first library was established in 2600 BC."], answer: 2 },
-                { statements: ["The first banned book was 'The Bible'.", "The first book to sell a million copies was 'Uncle Tom's Cabin'.", "The first book to be printed in color was 'The Mainz Psalter'."], answer: 2 },
-                { statements: ["The first book fair was held in 1480.", "The first book review was published in 1665.", "The first book jacket was used in 1832."], answer: 2 },
-                { statements: ["The first bookmobile was launched in 1857.", "The first bookstore chain was founded in 1873.", "The first book vending machine was installed in 1822."], answer: 2 },
-                { statements: ["The first book written by a computer was 'The Policeman's Beard is Half Constructed'.", "The first book written in space was 'Falling to Earth'.", "The first book written underwater was 'The Silent World'."], answer: 2 },
-                { statements: ["The first book written by a president was 'The Autobiography of Theodore Roosevelt'.", "The first book written by a first lady was 'It Takes a Village'.", "The first book written by a celebrity was 'Mein Kampf'."], answer: 2 },
-                { statements: ["The first book written by a child was 'The Young Visiters'.", "The first book written by a teenager was 'Eragon'.", "The first book written by a centenarian was 'Somewhere Towards the End'."], answer: 2 },
-                { statements: ["The first book written in a day was 'The Boy Who Followed Ripley'.", "The first book written in a week was 'On the Road'.", "The first book written in a month was 'The Gambler'."], answer: 2 },
-                { statements: ["The first book written in a year was 'A Christmas Carol'.", "The first book written in a decade was 'Les Misérables'.", "The first book written in a lifetime was 'In Search of Lost Time'."], answer: 2 }
+                { statements: ["J.K. Rowling wrote Harry Potter on napkins.", "The first novel ever written was 'The Tale of Genji'.", "Shakespeare invented the name 'Jessica'."], answer: 0, difficulty: "easy" },
+                { statements: ["'Moby Dick' was a commercial failure.", "The longest novel is 'In Search of Lost Time'.", "Dr. Seuss wrote 'Green Eggs and Ham' on a bet."], answer: 0, difficulty: "easy" },
+                { statements: ["The first dictionary was published in 1604.", "The Bible is the most stolen book.", "The first printed book was the Gutenberg Bible."], answer: 1, difficulty: "medium" },
+                { statements: ["'Alice in Wonderland' was based on a real girl.", "Charles Dickens wrote 'A Christmas Carol' in six weeks.", "The first Pulitzer Prize was awarded in 1917."], answer: 0, difficulty: "medium" },
+                { statements: ["'War and Peace' has over 500 characters.", "The most translated book is the Bible.", "The first novel written on a typewriter was 'Tom Sawyer'."], answer: 2, difficulty: "medium" },
+                { statements: ["The first book printed in America was 'The Bay Psalm Book'.", "The first book sold on Amazon was 'Fluid Concepts and Creative Analogies'.", "The first e-book was 'The Declaration of Independence'."], answer: 2, difficulty: "hard" },
+                { statements: ["The first audiobook was recorded in 1932.", "The first book club was started in 1926.", "The first library was established in 2600 BC."], answer: 2, difficulty: "hard" },
+                { statements: ["The first banned book was 'The Bible'.", "The first book to sell a million copies was 'Uncle Tom's Cabin'.", "The first book to be printed in color was 'The Mainz Psalter'."], answer: 2, difficulty: "advance" },
+                { statements: ["The first book fair was held in 1480.", "The first book review was published in 1665.", "The first book jacket was used in 1832."], answer: 2, difficulty: "advance" },
+                { statements: ["The first bookmobile was launched in 1857.", "The first bookstore chain was founded in 1873.", "The first book vending machine was installed in 1822."], answer: 2, difficulty: "advance" },
+                { statements: ["The first book written by a computer was 'The Policeman's Beard is Half Constructed'.", "The first book written in space was 'Falling to Earth'.", "The first book written underwater was 'The Silent World'."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first book written by a president was 'The Autobiography of Theodore Roosevelt'.", "The first book written by a first lady was 'It Takes a Village'.", "The first book written by a celebrity was 'Mein Kampf'."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first book written by a child was 'The Young Visiters'.", "The first book written by a teenager was 'Eragon'.", "The first book written by a centenarian was 'Somewhere Towards the End'."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first book written in a day was 'The Boy Who Followed Ripley'.", "The first book written in a week was 'On the Road'.", "The first book written in a month was 'The Gambler'."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first book written in a year was 'A Christmas Carol'.", "The first book written in a decade was 'Les Misérables'.", "The first book written in a lifetime was 'In Search of Lost Time'."], answer: 2, difficulty: "extreme" }
             ],
             science: [
-                { statements: ["The speed of light is 299,792 km/s.", "The human body is 60% water.", "The Earth's core is liquid."], answer: 2 },
-                { statements: ["DNA stands for 'Deoxyribonucleic Acid'.", "The periodic table has 118 elements.", "The Big Bang created the universe."], answer: 0 },
-                { statements: ["The mitochondria is the powerhouse of the cell.", "The human body has more bacteria than cells.", "The Earth's atmosphere is 78% oxygen."], answer: 2 },
-                { statements: ["The first vaccine was for smallpox.", "The theory of relativity was proposed by Einstein.", "The human genome has 20,000-25,000 genes."], answer: 0 },
-                { statements: ["The first element on the periodic table is hydrogen.", "The Earth's magnetic field protects us from solar wind.", "The human brain uses 10% of its capacity."], answer: 2 },
-                { statements: ["The first law of thermodynamics is conservation of energy.", "The second law of thermodynamics is entropy always increases.", "The third law of thermodynamics is absolute zero cannot be reached."], answer: 2 },
-                { statements: ["The first quantum computer was built in 1998.", "The first nuclear reactor was built in 1942.", "The first particle accelerator was built in 1930."], answer: 2 },
-                { statements: ["The first cloned mammal was Dolly the sheep.", "The first genetically modified organism was bacteria.", "The first CRISPR gene editing was done in 2012."], answer: 2 },
-                { statements: ["The first artificial satellite was Sputnik 1.", "The first human in space was Yuri Gagarin.", "The first moon landing was Apollo 11."], answer: 2 },
-                { statements: ["The first exoplanet was discovered in 1992.", "The first black hole image was taken in 2019.", "The first gravitational waves were detected in 2015."], answer: 2 },
-                { statements: ["The first antibiotic was penicillin.", "The first antiviral was acyclovir.", "The first anticancer drug was mustard gas."], answer: 2 },
-                { statements: ["The first organ transplant was a kidney.", "The first heart transplant was in 1967.", "The first face transplant was in 2005."], answer: 2 },
-                { statements: ["The first artificial heart was implanted in 1982.", "The first pacemaker was implanted in 1958.", "The first cochlear implant was in 1977."], answer: 2 },
-                { statements: ["The first bionic eye was implanted in 2000.", "The first bionic arm was in 1993.", "The first bionic leg was in 2006."], answer: 2 },
-                { statements: ["The first artificial intelligence program was written in 1951.", "The first neural network was created in 1958.", "The first machine learning algorithm was in 1959."], answer: 2 }
+                { statements: ["The speed of light is 299,792 km/s.", "The human body is 60% water.", "The Earth's core is liquid."], answer: 2, difficulty: "easy" },
+                { statements: ["DNA stands for 'Deoxyribonucleic Acid'.", "The periodic table has 118 elements.", "The Big Bang created the universe."], answer: 0, difficulty: "easy" },
+                { statements: ["The mitochondria is the powerhouse of the cell.", "The human body has more bacteria than cells.", "The Earth's atmosphere is 78% oxygen."], answer: 2, difficulty: "medium" },
+                { statements: ["The first vaccine was for smallpox.", "The theory of relativity was proposed by Einstein.", "The human genome has 20,000-25,000 genes."], answer: 0, difficulty: "medium" },
+                { statements: ["The first element on the periodic table is hydrogen.", "The Earth's magnetic field protects us from solar wind.", "The human brain uses 10% of its capacity."], answer: 2, difficulty: "medium" },
+                { statements: ["The first law of thermodynamics is conservation of energy.", "The second law of thermodynamics is entropy always increases.", "The third law of thermodynamics is absolute zero cannot be reached."], answer: 2, difficulty: "hard" },
+                { statements: ["The first quantum computer was built in 1998.", "The first nuclear reactor was built in 1942.", "The first particle accelerator was built in 1930."], answer: 2, difficulty: "hard" },
+                { statements: ["The first cloned mammal was Dolly the sheep.", "The first genetically modified organism was bacteria.", "The first CRISPR gene editing was done in 2012."], answer: 2, difficulty: "advance" },
+                { statements: ["The first artificial satellite was Sputnik 1.", "The first human in space was Yuri Gagarin.", "The first moon landing was Apollo 11."], answer: 2, difficulty: "advance" },
+                { statements: ["The first exoplanet was discovered in 1992.", "The first black hole image was taken in 2019.", "The first gravitational waves were detected in 2015."], answer: 2, difficulty: "advance" },
+                { statements: ["The first antibiotic was penicillin.", "The first antiviral was acyclovir.", "The first anticancer drug was mustard gas."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first organ transplant was a kidney.", "The first heart transplant was in 1967.", "The first face transplant was in 2005."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first artificial heart was implanted in 1982.", "The first pacemaker was implanted in 1958.", "The first cochlear implant was in 1977."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first bionic eye was implanted in 2000.", "The first bionic arm was in 1993.", "The first bionic leg was in 2006."], answer: 2, difficulty: "extreme" },
+                { statements: ["The first artificial intelligence program was written in 1951.", "The first neural network was created in 1958.", "The first machine learning algorithm was in 1959."], answer: 2, difficulty: "extreme" }
             ],
             geography: [
-                { statements: ["The capital of France is Paris.", "The Sahara is the largest desert.", "The Nile is the longest river."], answer: 0 },
-                { statements: ["The Great Barrier Reef is in Australia.", "The Amazon is the largest rainforest.", "Mount Everest is the tallest mountain."], answer: 2 },
-                { statements: ["The Dead Sea is the lowest point on Earth.", "The Pacific is the largest ocean.", "The capital of Canada is Toronto."], answer: 2 },
-                { statements: ["Russia spans 11 time zones.", "The equator passes through 13 countries.", "The capital of South Africa is Johannesburg."], answer: 2 },
-                { statements: ["Iceland is green and Greenland is icy.", "The longest coastline is in Canada.", "The capital of Brazil is Rio de Janeiro."], answer: 2 },
-                { statements: ["The deepest part of the ocean is the Mariana Trench.", "The highest waterfall is Angel Falls.", "The largest island is Greenland."], answer: 2 },
-                { statements: ["The largest country by area is Russia.", "The smallest country is Vatican City.", "The most populated country is China."], answer: 2 },
-                { statements: ["The most visited country is France.", "The least visited country is Tuvalu.", "The most expensive city is Singapore."], answer: 2 },
-                { statements: ["The coldest inhabited place is Oymyakon, Russia.", "The hottest place is Death Valley, USA.", "The wettest place is Mawsynram, India."], answer: 2 },
-                { statements: ["The driest place is the Atacama Desert.", "The windiest place is Commonwealth Bay, Antarctica.", "The sunniest place is Yuma, Arizona."], answer: 2 },
-                { statements: ["The most earthquake-prone country is Japan.", "The most volcanic country is Indonesia.", "The most tornado-prone country is the USA."], answer: 2 },
-                { statements: ["The most hurricane-prone country is the USA.", "The most flood-prone country is Bangladesh.", "The most drought-prone country is Somalia."], answer: 2 },
-                { statements: ["The most forested country is Suriname.", "The most desert country is Libya.", "The most mountainous country is Bhutan."], answer: 2 },
-                { statements: ["The most island country is Sweden.", "The most lake country is Canada.", "The most river country is Brazil."], answer: 2 },
-                { statements: ["The most border country is China.", "The most landlocked country is Kazakhstan.", "The most coastal country is Canada."], answer: 2 }
+                { statements: ["The capital of France is Paris.", "The Sahara is the largest desert.", "The Nile is the longest river."], answer: 0, difficulty: "easy" },
+                { statements: ["The Great Barrier Reef is in Australia.", "The Amazon is the largest rainforest.", "Mount Everest is the tallest mountain."], answer: 2, difficulty: "easy" },
+                { statements: ["The Dead Sea is the lowest point on Earth.", "The Pacific is the largest ocean.", "The capital of Canada is Toronto."], answer: 2, difficulty: "medium" },
+                { statements: ["Russia spans 11 time zones.", "The equator passes through 13 countries.", "The capital of South Africa is Johannesburg."], answer: 2, difficulty: "medium" },
+                { statements: ["Iceland is green and Greenland is icy.", "The longest coastline is in Canada.", "The capital of Brazil is Rio de Janeiro."], answer: 2, difficulty: "medium" },
+                { statements: ["The deepest part of the ocean is the Mariana Trench.", "The highest waterfall is Angel Falls.", "The largest island is Greenland."], answer: 2, difficulty: "hard" },
+                { statements: ["The largest country by area is Russia.", "The smallest country is Vatican City.", "The most populated country is China."], answer: 2, difficulty: "hard" },
+                { statements: ["The most visited country is France.", "The least visited country is Tuvalu.", "The most expensive city is Singapore."], answer: 2, difficulty: "advance" },
+                { statements: ["The coldest inhabited place is Oymyakon, Russia.", "The hottest place is Death Valley, USA.", "The wettest place is Mawsynram, India."], answer: 2, difficulty: "advance" },
+                { statements: ["The driest place is the Atacama Desert.", "The windiest place is Commonwealth Bay, Antarctica.", "The sunniest place is Yuma, Arizona."], answer: 2, difficulty: "advance" },
+                { statements: ["The most earthquake-prone country is Japan.", "The most volcanic country is Indonesia.", "The most tornado-prone country is the USA."], answer: 2, difficulty: "extreme" },
+                { statements: ["The most hurricane-prone country is the USA.", "The most flood-prone country is Bangladesh.", "The most drought-prone country is Somalia."], answer: 2, difficulty: "extreme" },
+                { statements: ["The most forested country is Suriname.", "The most desert country is Libya.", "The most mountainous country is Bhutan."], answer: 2, difficulty: "extreme" },
+                { statements: ["The most island country is Sweden.", "The most lake country is Canada.", "The most river country is Brazil."], answer: 2, difficulty: "extreme" },
+                { statements: ["The most border country is China.", "The most landlocked country is Kazakhstan.", "The most coastal country is Canada."], answer: 2, difficulty: "extreme" }
             ]
         };
 
@@ -910,9 +970,10 @@
             skipsRemaining: 3,
             timer: null,
             timeRemaining: 10,
-            timerEnabled: false,
+            timerEnabled: true,
             selectedStatement: null,
-            fiftyFiftyUsed: false
+            fiftyFiftyUsed: false,
+            gameHistory: []
         };
 
         // DOM Elements
@@ -927,6 +988,7 @@
         const classicModeBtn = document.getElementById('classicModeBtn');
         const gauntletModeBtn = document.getElementById('gauntletModeBtn');
         const dailyChallengeBtn = document.getElementById('dailyChallengeBtn');
+        const difficultyBtns = document.querySelectorAll('.difficulty-btn');
         const categoryBtns = document.querySelectorAll('.category-btn');
         
         const scoreValue = document.getElementById('scoreValue');
@@ -953,6 +1015,7 @@
         const playAgainBtn = document.getElementById('playAgainBtn');
         const mainMenuBtn = document.getElementById('mainMenuBtn');
         const shareBtn = document.getElementById('shareBtn');
+        const exportBtn = document.getElementById('exportBtn');
 
         // Initialize the game
         function init() {
@@ -971,14 +1034,23 @@
                 showScreen(difficultySelection);
             });
             
+            difficultyBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    gameState.difficulty = btn.dataset.difficulty;
+                    startGame();
+                });
+            });
+            
             dailyChallengeBtn.addEventListener('click', () => {
                 gameState.mode = 'daily';
                 // For demo, we'll use mixed category questions
                 gameState.currentQuestions = [];
                 Object.keys(questions).forEach(cat => {
-                    gameState.currentQuestions = gameState.currentQuestions.concat(questions[cat].slice(0, 2));
+                    if (cat !== 'easy' && cat !== 'medium' && cat !== 'hard' && cat !== 'advance' && cat !== 'extreme') {
+                        gameState.currentQuestions = gameState.currentQuestions.concat(questions[cat].slice(0, 2));
+                    }
                 });
-                gameState.currentQuestions = gameState.currentQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
+                gameState.currentQuestions = gameState.currentQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
                 startGame();
             });
             
@@ -999,60 +1071,8 @@
             playAgainBtn.addEventListener('click', playAgain);
             mainMenuBtn.addEventListener('click', returnToMainMenu);
             shareBtn.addEventListener('click', shareScore);
+            exportBtn.addEventListener('click', exportToCSV);
             
-            // Difficulty Selection Buttons
-            const difficultyBtns = document.querySelectorAll('.difficulty-selection .mode-btn');
-            difficultyBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const level = btn.dataset.difficulty;
-                    const numQuestionsPerCategory = {
-                        rookie: 1,
-                        challenger: 2,
-                        detective: 3,
-                        expert: 4,
-                        mastermind: 5
-                    }[level];
-
-                    gameState.currentQuestions = [];
-                    const usedIndexes = {};
-
-                    Object.keys(questions).forEach(cat => {
-                        const catQuestions = [...questions[cat]];
-                        catQuestions.sort(() => 0.5 - Math.random());
-
-                        let selected = 0;
-                        for (let i = 0; i < catQuestions.length && selected < numQuestionsPerCategory; i++) {
-                            const qKey = JSON.stringify(catQuestions[i].statements);
-                            if (!usedIndexes[qKey]) {
-                                usedIndexes[qKey] = true;
-                                gameState.currentQuestions.push(catQuestions[i]);
-                                selected++;
-                            }
-                        }
-                    });
-
-                    gameState.currentQuestions = gameState.currentQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
-                    
-                    gameState.difficulty = level;
-                    const difficultyNames = {
-                        rookie: "🟢 Rookie Mode",
-                        challenger: "🔵 Challenger Mode",
-                        detective: "🟡 Detective Mode",
-                        expert: "🟠 Expert Mode",
-                        mastermind: "🔴 Mastermind Mode"
-                    };
-                    document.getElementById('difficultyDisplay').textContent = difficultyNames[level];
-                    startGame();
-                });
-            });
-            
-            const globalTitle = document.getElementById('globalGameTitle');
-            if (globalTitle) {
-                globalTitle.addEventListener('click', () => {
-                    window.location.reload();
-                });
-            }
-
             // Show title screen initially
             showScreen(titleScreen);
         }
@@ -1079,8 +1099,7 @@
             gameState.skipsRemaining = 3;
             gameState.selectedStatement = null;
             gameState.fiftyFiftyUsed = false;
-            
-            gameState.timerEnabled = true;
+            gameState.gameHistory = [];
             
             // Load questions based on mode
             if (gameState.mode === 'classic') {
@@ -1089,10 +1108,26 @@
                 // Set category name for display
                 const categoryBtn = document.querySelector(`.category-btn[data-category="${gameState.category}"]`);
                 categoryNameDisplay.textContent = categoryBtn.textContent.trim();
+                gameState.timerEnabled = false;
+            } else if (gameState.mode === 'gauntlet') {
+                // Use questions from all categories with selected difficulty
+                gameState.currentQuestions = [];
+                Object.keys(questions).forEach(cat => {
+                    if (cat !== 'easy' && cat !== 'medium' && cat !== 'hard' && cat !== 'advance' && cat !== 'extreme') {
+                        const filteredQuestions = questions[cat].filter(q => q.difficulty === gameState.difficulty);
+                        gameState.currentQuestions = gameState.currentQuestions.concat(filteredQuestions);
+                    }
+                });
+                gameState.currentQuestions = gameState.currentQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
+                categoryNameDisplay.textContent = `${gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)} Gauntlet`;
+                gameState.timerEnabled = true;
+            } else if (gameState.mode === 'daily') {
+                categoryNameDisplay.textContent = "Daily Challenge";
+                gameState.timerEnabled = true;
             }
             
-            // Shuffle questions and limit to 10
-            gameState.currentQuestions = gameState.currentQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
+            // Shuffle questions and limit to 15
+            gameState.currentQuestions = gameState.currentQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
             
             // Show game screen
             showScreen(gameScreen);
@@ -1189,6 +1224,17 @@
                 gameState.streak = 0;
             }
             
+            // Record game history
+            gameState.gameHistory.push({
+                questionNumber: gameState.currentQuestionIndex + 1,
+                question: currentQuestion.statements.join(' | '),
+                selectedAnswer: gameState.selectedStatement,
+                correctAnswer: currentQuestion.answer,
+                isCorrect: isCorrect,
+                difficulty: currentQuestion.difficulty || gameState.difficulty || 'mixed',
+                timeSpent: 10 - gameState.timeRemaining
+            });
+            
             // Update UI
             updateScore();
             updateStreak();
@@ -1225,6 +1271,21 @@
         
         function skipQuestion() {
             if (gameState.skipsRemaining <= 0) return;
+            
+            // Get current question for history
+            const currentQuestion = gameState.currentQuestions[gameState.currentQuestionIndex];
+            
+            // Record game history for skipped question
+            gameState.gameHistory.push({
+                questionNumber: gameState.currentQuestionIndex + 1,
+                question: currentQuestion.statements.join(' | '),
+                selectedAnswer: null,
+                correctAnswer: currentQuestion.answer,
+                isCorrect: false,
+                difficulty: currentQuestion.difficulty || gameState.difficulty || 'mixed',
+                timeSpent: 10 - gameState.timeRemaining,
+                skipped: true
+            });
             
             // Update stats
             gameState.skipsRemaining -= 1;
@@ -1321,8 +1382,22 @@
                     gameState.streak = 0;
                     updateStreak();
                     
-                    // Show correct answer
+                    // Get current question for history
                     const currentQuestion = gameState.currentQuestions[gameState.currentQuestionIndex];
+                    
+                    // Record game history for timed out question
+                    gameState.gameHistory.push({
+                        questionNumber: gameState.currentQuestionIndex + 1,
+                        question: currentQuestion.statements.join(' | '),
+                        selectedAnswer: null,
+                        correctAnswer: currentQuestion.answer,
+                        isCorrect: false,
+                        difficulty: currentQuestion.difficulty || gameState.difficulty || 'mixed',
+                        timeSpent: 10,
+                        timedOut: true
+                    });
+                    
+                    // Show correct answer
                     const statements = document.querySelectorAll('.statement');
                     statements[currentQuestion.answer].classList.add('correct');
                     
@@ -1359,12 +1434,14 @@
         }
         
         function playAgain() {
-            // Always return to mode selection after playing again
-            showScreen(modeSelection);
-            // Reset game state relevant to mode, category, difficulty selection for a clean slate
-            gameState.mode = null;
-            gameState.category = null;
-            gameState.difficulty = null;
+            // Start a new game with the same settings
+            if (gameState.mode === 'classic') {
+                showScreen(categorySelection);
+            } else if (gameState.mode === 'gauntlet') {
+                showScreen(difficultySelection);
+            } else {
+                startGame();
+            }
         }
         
         function returnToMainMenu() {
@@ -1381,6 +1458,55 @@
                 console.error('Failed to copy: ', err);
                 alert('Failed to copy score to clipboard.');
             });
+        }
+        
+        function exportToCSV() {
+            // Create CSV content
+            let csvContent = "data:text/csv;charset=utf-8,";
+            
+            // Add header
+            csvContent += "Question Number,Question,Selected Answer,Correct Answer,Was Correct,Difficulty,Time Spent (s),Skipped,Timed Out\n";
+            
+            // Add game history rows
+            gameState.gameHistory.forEach(item => {
+                const row = [
+                    item.questionNumber,
+                    `"${item.question}"`,
+                    item.selectedAnswer !== null ? item.selectedAnswer + 1 : 'N/A',
+                    item.correctAnswer + 1,
+                    item.isCorrect ? 'Yes' : 'No',
+                    item.difficulty,
+                    item.timeSpent,
+                    item.skipped ? 'Yes' : 'No',
+                    item.timedOut ? 'Yes' : 'No'
+                ].join(',');
+                csvContent += row + "\n";
+            });
+            
+            // Add summary
+            csvContent += "\nSummary\n";
+            csvContent += `Final Score,${gameState.score}\n`;
+            csvContent += `Correct Answers,${gameState.correctAnswers}\n`;
+            csvContent += `Wrong Answers,${gameState.wrongAnswers}\n`;
+            csvContent += `Longest Streak,${gameState.longestStreak}\n`;
+            csvContent += `Powerups Used,${gameState.powerupsUsed}\n`;
+            csvContent += `Skipped Questions,${gameState.skippedQuestions}\n`;
+            csvContent += `Game Mode,${gameState.mode}\n`;
+            csvContent += `Category,${gameState.category || 'Mixed'}\n`;
+            csvContent += `Difficulty,${gameState.difficulty || 'Mixed'}\n`;
+            
+            // Create download link
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `game_results_${new Date().toISOString().slice(0, 10)}.csv`);
+            document.body.appendChild(link);
+            
+            // Trigger download
+            link.click();
+            
+            // Clean up
+            document.body.removeChild(link);
         }
         
         function updateScore() {
