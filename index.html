@@ -288,6 +288,13 @@
             text-shadow: 1px 1px 0 #feca57;
         }
         
+        .mode-name {
+            font-size: 1rem;
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
         .category-name {
             font-size: 1.1rem;
             color: #feca57;
@@ -438,6 +445,11 @@
         
         .submit-btn:hover {
             background: #10ac84;
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         
         .score-display {
@@ -703,6 +715,7 @@
             <div class="game-header">
                 <div>
                     <div class="game-name">Guess the Lie Among Truth</div>
+                    <div class="mode-name" id="modeNameDisplay"></div>
                     <div class="category-name" id="categoryNameDisplay"></div>
                 </div>
                 <div class="timer-display" id="timerDisplay">Time: 10s</div>
@@ -999,6 +1012,7 @@
         const submitBtn = document.getElementById('submitBtn');
         const skipQuestionBtn = document.getElementById('skipQuestionBtn');
         const categoryNameDisplay = document.getElementById('categoryNameDisplay');
+        const modeNameDisplay = document.getElementById('modeNameDisplay');
         
         const fiftyFiftyBtn = document.getElementById('fiftyFiftyBtn');
         const freezeTimerBtn = document.getElementById('freezeTimerBtn');
@@ -1101,8 +1115,10 @@
             gameState.fiftyFiftyUsed = false;
             gameState.gameHistory = [];
             
-            // Load questions based on mode
+            // Set mode name for display
+            let modeDisplayName = "";
             if (gameState.mode === 'classic') {
+                modeDisplayName = "Classic Mode";
                 // Use the selected category's questions
                 gameState.currentQuestions = [...questions[gameState.category]];
                 // Set category name for display
@@ -1110,6 +1126,7 @@
                 categoryNameDisplay.textContent = categoryBtn.textContent.trim();
                 gameState.timerEnabled = false;
             } else if (gameState.mode === 'gauntlet') {
+                modeDisplayName = "Gauntlet Mode";
                 // Use questions from all categories with selected difficulty
                 gameState.currentQuestions = [];
                 Object.keys(questions).forEach(cat => {
@@ -1119,12 +1136,15 @@
                     }
                 });
                 gameState.currentQuestions = gameState.currentQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
-                categoryNameDisplay.textContent = `${gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)} Gauntlet`;
+                categoryNameDisplay.textContent = `${gameState.difficulty.charAt(0).toUpperCase() + gameState.difficulty.slice(1)} Difficulty`;
                 gameState.timerEnabled = true;
             } else if (gameState.mode === 'daily') {
-                categoryNameDisplay.textContent = "Daily Challenge";
+                modeDisplayName = "Daily Challenge";
+                categoryNameDisplay.textContent = "Mixed Categories";
                 gameState.timerEnabled = true;
             }
+            
+            modeNameDisplay.textContent = modeDisplayName;
             
             // Shuffle questions and limit to 15
             gameState.currentQuestions = gameState.currentQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
